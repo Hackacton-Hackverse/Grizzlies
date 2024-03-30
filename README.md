@@ -16,6 +16,6 @@ Pour lancer l'appli, il faut :
   ## Nous avons utilisé Django pour develloper une application Web To Do App
 
   # Membre d'equipe
-  @ http:// github.com/Delmat237
-  @ http:// github.com/MyDyrr2
+  @ https:// github.com/Delmat237
+  @ https:// github.com/MyDyrr2
   
