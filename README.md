@@ -18,4 +18,6 @@ Pour lancer l'appli, il faut :
   # Membre d'equipe
   @ Delmat237
   @ MyDyrr2
-  
+
+  💻 Pile Technologique :
+Python Django SQLite  HTML5
