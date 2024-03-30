@@ -1,0 +1,231 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family: 'poppins', sans-serif;
+	box-sizing: border-box;
+	
+}
+body{
+    font-family: Arial, Helvetica;
+    background-color: #000001;
+    font-size: xx-large;
+    color:#000000
+}
+html {
+    scroll-behavior: smooth;
+
+}
+/* header */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+     color: #042ed3; 
+}
+
+header .menu {
+    display: flex;
+    list-style: none;
+    margin: 20px;
+    text-align: center;
+
+}
+header .menu li{
+    
+    font-weight: bold;
+    margin: 0 15px;
+    display: flex;
+    
+}
+header .menu li a {
+    color: #770575;
+    background-color: rgba(0, 0, 255, 0.279);
+    text-decoration: 0;
+    border-radius: 6px;
+    text-transform: uppercase;
+    padding: 5px;
+    transition: 0.5s;
+    justify-content: space-between;
+    font-size: small;
+}
+header .lien li a {
+    text-decoration: 0;
+    border-radius: 6px;
+    text-transform: uppercase;
+    padding: 10px 30px;
+    border: 2px solid#5b0156;
+    transition: 0.5s;
+    justify-content: space-between;
+    font-family: serif;
+}
+/* div : flexbox */
+.flexbox {
+    border: 2px solid skyblue;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 20px;
+     color: rgb(0, 0, 0); 
+    background-color: #fdfdfd2b;
+}
+.flexbox ul{
+    padding: 0;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+}
+/*embelir les li du flexbox uniquement*/
+.flexbox li {
+    font-size: 30px;
+    display: flex;
+    list-style: none;
+    height: 60px;
+}
+.flexbox p {
+    text-align: center;
+} 
+.flexbox.caract {
+    display: grid;
+    color: #675afe;
+}
+
+/* section d'acceuil */
+
+.section {
+    display: flex;
+}
+.flex {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: self-end;
+    margin: 20px;
+    border: double;
+}
+.Frame1 {
+    margin: 0 5%;
+    padding: 0px 10px 10px 10px;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    background-color: #7b777b;
+}
+.Frame1 h1 {
+    color : blue;
+    background-color: #17171c;
+}
+.Frame2 {
+    margin: 0 5%;
+    padding: 0px 10px 10px 10px;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    background-color: #7b777b;
+}
+.Frame2 h1 {
+    color : rgb(4, 160, 53);
+    background-color: #17171c;
+}
+.Frame3 {
+    margin: 0 5%;
+    padding: 0px 10px 10px 10px;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    background-color:  #7b777b;
+}
+.Frame3 h1 {
+    color : rgb(200, 3, 137);
+    background-color: #17171c;
+}
+.caract {
+    margin: 20px 0;
+    background-color: #b7b7d1;
+    
+}
+.caract p{
+    text-align: left;
+}
+
+#container {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.7),#675afe);
+    background-size: cover;
+    background-position:  center;
+    padding:10px, 10%;
+}
+
+.messages {
+    height: 10px;
+    color: #FF5722;
+    font-size: -webkit-xxx-large;
+}
+
+input,
+textarea {
+    margin: 5px;
+    border: 1px solid darkblue;
+    padding: 10px;
+    font-size: 1.1rem;
+    font-family: serif;
+    border-radius: 5px;
+}
+textarea {
+    grid-area: ta;
+    height: 40px;
+    resize: none;
+}
+#btn-submit {
+    grid-area: bt;
+    cursor: pointer;
+    background-color: cyan;
+    transition: 0.2s;
+}
+
+
+.container-text a:hover {
+    letter-spacing: 1px
+}
+
+
+h1 {
+    margin: 10px;
+    text-transform: uppercase; /*transforme en majuscule*/
+    letter-spacing: 4px; /*espace en pixel entre les lettres*/
+    text-align: center;
+    /* Les tailles de polices doivent etre en REM (taille normale = 2 rem */
+    font-size: 2.5rem; /*taille des pixels*/
+    text-shadow: 3px 3px 8px rgb(234 22 243 / 96%);/*pour mettre l'ombre d'un texte*/
+    color :rgb(234 22 243 / 96%);
+    /*text-decoration peut etre utilise pour souligner et autre */
+    text-decoration: none;
+    text-decoration-color: blue;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; /*permet de changer la police*/
+}
+
+
+#btn {
+    grid-area: bt;
+    cursor: pointer;
+    color: #2307ae;
+    text-decoration: 0;
+    border-radius: 6px;
+    text-transform: uppercase;
+    padding: 10px 30px;
+    border: 2px solid#5b0156;
+    transition: 0.5s;
+    margin: 100px 0
+}
+
+.container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    flex-direction: row;
+    
+}
+.container form {
+    background-color: slategray;
+    margin: auto;
+    border-radius: 10px;
+}

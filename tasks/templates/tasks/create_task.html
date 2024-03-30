@@ -1,0 +1,32 @@
+{% load static %}
+<!-- create_task.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Créer une tâche</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1>Créer une tâche</h1>
+    <div class="container">
+        {%if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li > {{ message }}</li>
+                {% endfor%}
+            </ul>
+        {%endif%}
+        {% comment %} formulaire de creation de tache {% endcomment %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }} <!-- pour afficher les champs-->
+            <button type="submit" id ="btn">Créer</button>
+        </form>
+    </div>
+    <header>
+        <ul class="menu">
+             <li><a href="{% url 'task-list' %}"> Retour à la liste des tâches</a></li>
+        </u>
+    </header>
+</body>
+</html>
