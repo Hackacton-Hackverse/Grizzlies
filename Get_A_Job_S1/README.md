@@ -1,6 +1,6 @@
 # Hackathon Grizzlies
 # lien du site en ligne 	:EMOJICODE: :pushpin:
-•	Grizzlies.pythonanywhere.com
+•	Grizzlies2024.pythonanywhere.com
 
 # Comment déployer l’application en local?
 Pour lancer l'appli, il faut :
