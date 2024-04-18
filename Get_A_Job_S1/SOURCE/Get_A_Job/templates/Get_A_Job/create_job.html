@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ajouter une offre d'emploi</title>
+<link rel="stylesheet" href="{% static 'css/create_job.css' %}">
+
+</head>
+<body>
+
+<header>
+  <h1>Ajouter une nouvelle offre d'emploi</h1>
+</header>
+
+<main>
+  <form method="post" id="nouvelleOffreForm">
+    {% csrf_token %}
+    {{ form.as_p }} <!-- pour afficher les champs-->
+    <button type="submit">Ajouter l'offre</button>
+  </form>
+</main>
+
+<footer>
+  <p>GetAJob © 2024 . Tous droits réservés.</p>
+</footer>
+
+
+</body>
+</html>
+
