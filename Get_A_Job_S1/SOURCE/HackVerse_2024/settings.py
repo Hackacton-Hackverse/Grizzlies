@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Get_A_Job',
-    'rest_framework'
+    
 ]
 
 MIDDLEWARE = [
