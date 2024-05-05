@@ -1,0 +1,33 @@
+{% load static %}
+<!-- delete_task.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Supprimer une offre</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="flexbox">
+        <ul>
+            <h1>Supprimer l'offre {{ job.titre }}</h1>
+            <p>Etes-vous sur de vouloir supprimer l'offre: "{{job.titre}}" ?</p>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" id='btn'>Supprimer</button> 
+            </form>
+        </ul>
+    </div>
+    <section>
+        <button class="btn" onclick="Annuler()">Annuler</button>
+       
+    </section>
+    <script>
+      function Annuler(){
+        
+        // Redirection vers la page de candidature
+        window.location.href = 'job/list/'; 
+      }
+    </script>
+</body>
+</html>
