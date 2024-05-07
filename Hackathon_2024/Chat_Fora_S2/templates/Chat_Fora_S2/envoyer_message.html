@@ -1,0 +1,21 @@
+<!-- envoyer_message.html -->
+{% block content %}
+<h1> Envoyer un message</h1>
+<h2> {{ conversation}}</h2>
+
+<form method="post" >
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit"> Envoyer </button>
+</form>
+
+
+<h3> Message envoyes :</h3> 
+<ul> {% for message in conversation.message_set.all %}
+    <li>{{ message.content }}
+-Envoye par 
+{{ message.user.username}} le {{ message.timstamp}} </li>
+{% endfor %}
+    </ul>
+    {% endblock %}

@@ -1,0 +1,25 @@
+{% load static %}
+<!-- update_task.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Modifier une tâche</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1>Modifier une tâche</h1>
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }} <!-- pour afficcher les champs-->
+            <button type="submit" id ="btn">Modifier</button>
+        </form>
+    </div>
+    
+    <header>
+        <ul class="menu">
+            <li><a href="{% url 'task-list' %}">Retour à la liste des tâches </a><li>
+        </ul>
+    </header>
+</body>
+</html>

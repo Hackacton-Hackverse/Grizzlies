@@ -1,0 +1,26 @@
+{% load static %}
+<!-- select_task.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Selection de la tache</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1>Selectionner la tache à {{ objet }} :</h1>
+    <div class="flexbox">
+        <ul>
+            {% for task in tasks %} 
+                <div class="caract">
+                         <li><a href="http://127.0.0.1:8000/{{objet}}-{{task.title}}">{{ task.title }}</a></li>
+                </div>
+            {% endfor %}
+        </ul>
+    </div>
+    <header>
+        <ul class="menu">
+            <li><a href="{% url 'task-list' %}">Retour à la liste des tâches </a><li>
+        </ul>
+    </header>
+</body>
+</html>

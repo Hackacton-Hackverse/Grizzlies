@@ -1,0 +1,111 @@
+<!--<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GetAJob - Inscription ou Visite</title>
+<link rel="stylesheet" href="../Get A Job/style.css">
+<link rel="stylesheet" href="Chat.css">
+
+</head>
+<body>
+
+<header>
+  <h1>Bienvenue sur les chats</h1>
+</header>
+
+<main>
+  <section>
+    <h2>Inscription</h2>
+    <form id="inscriptionForm">
+      <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
+      <input type="email" id="email" name="email" placeholder="Votre email" required>
+      <input type="password" id="password" name="password" placeholder="Créez un mot de passe" required>
+      <button type="submit">S'inscrire</button>
+	  <button onclick="BackHome()">Annuler</button>
+    </form>
+  </section>
+
+</main>
+
+<footer>
+  <p>Chats&Fora © 2024 . Tous droits réservés.</p>
+</footer>
+
+<script>
+	document.getElementById('inscriptionForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+  alert('Inscription réussie !');
+});
+
+function BackHome() {
+  // Redirection vers la page des offres d'emploi
+  window.location.href = '../Get A Job/Offres.html';
+}
+</script>
+</body>
+</html>
+-->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription Chat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .form-container {
+            width: 300px;
+            margin: auto;
+            margin-top: 50px;
+        }
+        input[type="text"],
+        input[type="number"],
+        button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+        }
+        button {
+            background-color: #005948;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+		
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Inscription</h2>
+        <input type="text" id="nom" placeholder="Nom">
+        <input type="text" id="classe" placeholder="Classe">
+        <input type="text" id="matricule" placeholder="Matricule">
+        <button id="inscriptionBtn">S'inscrire/ S'authentifier</button>
+    </div>
+	
+    <script>
+        document.getElementById('inscriptionBtn').addEventListener('click', function() {
+            var nom = document.getElementById('nom').value;
+            var classe = document.getElementById('classe').value;
+            var matricule = document.getElementById('matricule').value;
+            
+            // Ici, vous devriez ajouter le code pour enregistrer les données dans une base de données ou un autre système de stockage.
+            console.log('Inscription:', nom, classe, matricule);
+            
+            // Réinitialiser le formulaire après l'inscription
+            document.getElementById('nom').value = '';
+            document.getElementById('classe').value = '';
+            document.getElementById('matricule').value = '';
+			
+			window.location.href = 'Acceuil.html';
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,51 @@
+{% block content %}
+    <h1>Details de la conversation </h1>
+    <h2>{{ conversation }}</h2>
+
+    <div id="messages">
+        {% for message in messages %}
+        <div class="message">
+            <p>{{ message.user.username }}</p>
+            <p>{{ message.content }}-{{message.timestamp }}</p>
+
+        </div>
+        {% empty %}
+        <p> Aucun message dans cette conversation.</p>
+        {%endfor %}
+    </div>
+
+    <form id="message-form">
+        <input type ="text" id="message-input" />
+        <button type='submit'>  Envoyer</button>
+    </form>
+
+    <script>
+        const socket = newWebSocket('http://127.0.0.1:8000/Chat/');
+        // ouverture de la connexion Websocket d
+        socket.onopen = () => {
+            console.log('Connexion WebSocket établie.');};
+
+        //reception de message du serveur
+        socket.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            const message = data.message;
+            // affichage du message du ser
+        };
+        // Gestion des erreurs de connexion Websocket 
+        socket.onerror = (error) => {
+            console.error('Erreur WebSocket :',error);
+        };
+        //Fermeture de la connexion WebSocket 
+        socket.onclose = () => {
+            console.log('Connexion WebSocket fermée.');
+        };
+
+        //Envoi du message au serveur via WebSocket 
+        function sendmessage(message) {
+            const data = {
+                message: message
+            };
+            socket.send(JSON.stringify(data));
+        } 
+    </script>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% load static %}
+<!-- delete_task.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Supprimer une tâche</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="flexbox">
+        <ul>
+            <h1>Supprimer une tâche</h1>
+            <p>Etes-vous sur de vouloir supprimer la tâche : "{{task.title}}" ?</p>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" id='btn'>Supprimer</button> 
+            </form>
+        </ul>
+    </div>
+    <header>
+        <ul class="menu">
+            <li><a href="{% url 'task-list' %}">Annuler </a><li>
+        </ul>
+    </header>
+</body>
+</html>

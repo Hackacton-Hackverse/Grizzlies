@@ -1,0 +1,114 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+  
+
+  .offre {
+    background-color: white;
+    border: 1px solid #ddd;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .offre h2 {
+    color: #007BFF;
+  }
+  
+  .offre p {
+    color: #333;
+  }
+  
+  .btn-postuler {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: inline-block;
+    margin-top: 10px;
+  }
+  
+  .btn-postuler:hover {
+    background-color: #218838;
+  }
+  
+#container {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.7),#675afe);
+    background-size: cover;
+    background-position:  center;
+    padding:10px, 10%;
+}
+
+header {
+    display: flex;
+    align-items: right;
+    justify-content: space-between;
+    height: 80px;
+}
+header .logo p {
+    font-style: 70px;
+    color: #fff;
+    font-weight: bold;
+    font-family: serif;
+
+}
+
+header .menu {
+    display: flex;
+    list-style: none;
+}
+header .menu li{
+    margin: 0 15px;
+}
+header .menu li a {
+    text-decoration: none;
+    text-transform: capitalize;
+    color: #fff;
+
+}
+.container-text {
+    height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container-text h1 {
+    color: #fff;
+    font-style: 70px;
+    text-transform: capitalize;
+    font-family: 'Kaushan Script',cursive;
+}
+.container-text p {
+    color: #fff;
+    font-style: 16px;
+    margin: 20px 0 30px 0;
+}
+.container-text a {
+    color: #fff;
+    text-decoration: 0;
+    border-radius: 6px;
+    text-transform: uppercase;
+    padding: 10px 30px;
+    border: 2px solid#ffff;
+    transition: 0.5s;
+}
+.container-text a:hover {
+    letter-spacing: 1px
+}
+
+footer {
+  background-color: #007bff;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  bottom: 0;
+  width: 100%;
+}

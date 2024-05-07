@@ -1,0 +1,6 @@
+*.pyc
+__pycache__
+myvenv
+Offres_db.sqlite3
+/static
+.DS_Store

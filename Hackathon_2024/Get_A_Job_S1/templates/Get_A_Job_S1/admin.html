@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Action réservée aux administrateurs</title>
+    <link rel="stylesheet" href= "{% static 'css/style.css' %}">
+</head>
+<body>
+    <section>
+        <button class="btn" onclick="connection()">Connection</button>
+        <button class="btn" onclick="créer()">Créer une offre</button>
+        <button class="btn" onclick="Modifier()">Modifier une offre</button>
+        <button class="btn" onclick="Supprimer()">Supprimer une offre</button>
+    </section>
+    <script>
+      function connection(){
+        // Redirection vers la page de candidature
+        window.location.href = 'http://127.0.0.1:8000/job/admin/'; 
+      }
+        function créer (){
+          // Redirection vers la page de candidature
+          window.location.href = 'http://127.0.0.1:8000/job/create/'; 
+        }
+        function Modifier() {
+            // Redirection vers la page de candidature
+            window.location.href = 'http://127.0.0.1:8000/job/select_offre-update'; 
+          }
+        function Supprimer(){
+            // Redirection vers la page de candidature
+            window.location.href = 'http://127.0.0.1:8000/job/select_offre-delete'; 
+          }
+    </script>
+</body>
+</html>

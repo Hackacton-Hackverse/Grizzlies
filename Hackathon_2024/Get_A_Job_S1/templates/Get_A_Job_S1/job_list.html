@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plateforme d'emploi</title>
+<link rel="stylesheet" href= "{% static 'css/job_list.css' %}">
+
+</head>
+<body>
+
+    <div class="offre">
+        {% for job in jobs%}
+            <h2>{{ job.titre }}</h2>
+            <p>Entreprise: {{ job.nom_entreprise }}</p>
+            <p>Lieu: {{ job.lieu }}</p>
+            <p>Description : </b>{{ job.description}}</p>
+            <p>Email : {{ job.email }}</p>
+            <p>Rémuneration : {{ job.remuneration }}</p>
+            <p>Profil recherché : {{ job.profile }}</p>
+            <section>
+                <button class="btn-postuler" onclick="postuler({{ job.id }})">Postuler</button>
+            </section>
+        {% endfor %}
+    </div>
+<section>    
+    <footer>
+        <p>GetAJob © 2024 . Tous droits réservés.</p>
+    </footer>
+</section>
+<script>
+function postuler(id) {
+  // Redirection vers la page de candidature
+  window.location.href = 'http://127.0.0.1:8000/job/postuler-'+id+'/'; 
+}
+</script>
+
+</body>
+</html>
