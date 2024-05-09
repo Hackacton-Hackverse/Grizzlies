@@ -33,7 +33,7 @@ Pour lancer l'appli, il faut :
  - maintenant choisir la rubrique 
 # Comment Ça fonctionne?
 - Après avoir été enregistré en tant que admin(pour le moment) vous remplissez v
-- s informations à la première page d'accueil
+- s informations à la première page d'accueil(vous pouvez directement sélectionner 'already have a account '
 - Ensuite vous serez dirigé vers la liste de conversation, vous pouvez choisir une conversation et continuer de discuter
 - - ou créé une nouvelle discussion en cliquant sur le bouton ± en dessous à droite de la page
   - Entrer le titre de la discussion ainsi le username (nom d'utilisateur) du destinataire.
