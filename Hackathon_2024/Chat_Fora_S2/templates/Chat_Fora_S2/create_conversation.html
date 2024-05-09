@@ -4,15 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .form-container {
+            width: 300px;
+            margin: auto;
+            margin-top: 50px;
+        }
+        input[type="text"],
+        input[type="number"],
+        button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+        }
+        button {
+            background-color: #005948;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+		
+    </style>
 </head>
 <body>
     {% block content %}
+    <div class="form-container">
          <h1>Creer une nouvelle conversation</h1>
          <form method="post" >
             {% csrf_token %}
+            Utilisateurs connectés
+            <select for="character_choice" name = "character_choice">
+                {% for user in users %}
+                <option value="{{ user}}">{{user}}</option>
+                {% empty%}
+                {% endfor %}
+            </select>
             {{ form.as_p}}
             <button type="submit">Creer</button>
          </form>
+    </div>
     {% endblock %}
 </body>
 </html>

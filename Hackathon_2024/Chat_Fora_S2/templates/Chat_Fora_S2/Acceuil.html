@@ -1,4 +1,4 @@
-{% load static %}
+{% load static%}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -77,7 +77,7 @@
     </style>
 </head>
 <body>
-  {% block content %}
+
 	<div class="header">
 		<h1>Chat&Fora</h1>
 		<button id="btnOptions" class="options-button">Options</button>
@@ -86,89 +86,32 @@
 	<div id="optionsWindow" style="display: none; position: fixed; top: 0; right: 0; width: 20%; height: 100%; background: #00a86b; z-index: 1000;">
 	  <!-- Contenu de la fenêtre d'options -->
 	</div>
-
 	<div class="listOfconversations">
     <h1>Liste des conversations</h1>
     <ul class="conversation-list">
-
-        <!-- Exemple d'élément de conversation -->
         
-         {% comment %} <li class="conversation-item"><img src="{% static 'ressources/Carelle2.jpg' %}" alt = "C1" class="conversation-photo">Conversation 1</li>
-        <li class="conversation-item"><img src="{% static 'ressources/Carelle1.png' %}" alt = "C2"  class="conversation-photo">Conversation 2</li>
-         {% endcomment %}
-        
-          {% for conversation in conversations %}
+        {% for conversation in conversations %}
             <li class="conversation-item"><img src="{% static 'ressources/profile.jpeg' %}" alt = "C1" class="conversation-photo">
-              <a href="{%url  'messagerie' conversation.id %}">Conversation {{conversation.id}}</li>
-          {% empty %}
+              <a href="{% url  'messagerie' conversation.id %}">{{conversation.titre}}</li>
+        {% empty %}
               <li> Aucune conversation disponible </li>
-          {% endfor %}
-     
-
-
+        {% endfor %}
     </ul>
 	</div>
 
     <!-- Bouton flottant pour ajouter une nouvelle conversation -->
-    <button class="add-button" id="addConversation">+</button>
-  {% endblock %}
-<script>
-    
-    // JavaScript : Gestion du bouton flottant et ajout de nouvelles conversations avec une photo par défaut
-    document.getElementById('addConversation').addEventListener('click', function() {
-      const newConversationName = prompt('Entrez le nom de la nouvelle conversation :');
-      if (newConversationName) {
-        const conversationList = document.querySelector('.conversation-list');
-        const newItem = document.createElement('li');
-        newItem.classList.add('conversation-item');
-        
-        // Ajoutez une image par défaut pour la nouvelle conversation
-        const defaultPhoto = document.createElement('img');
-        defaultPhoto.src = "{% static 'ressources/profile.jpeg' %}" ; 
-        defaultPhoto.alt = 'Photo de profil';
-        defaultPhoto.classList.add('conversation-photo');
-        
-        // Ajoutez le texte de la conversation
-        const textNode = document.createTextNode(newConversationName);
-        
-        // Assemblez l'élément de la conversation
-        newItem.appendChild(defaultPhoto);
-        newItem.appendChild(textNode);
-        
-        conversationList.appendChild(newItem);
-      }
-    });
+    <button class="add-button"><a href="{% url  'create'  %}">+</button>
 
-
-    // JavaScript : Gestion du clic sur chaque élément de conversation
-    document.addEventListener('DOMContentLoaded', () => {
-        const conversationList = document.querySelector('.conversation-list');
-        conversationList.addEventListener('click', (event) => {
-            if (event.target && event.target.matches('.conversation-item')) {
-                // Récupérez le nom de la conversation et l'image associée
-                const conversationName = event.target.textContent.trim();
-                const conversationImageSrc = event.target.querySelector('img').src;
-                
-                // Stockez les informations dans sessionStorage pour y accéder sur la page de messagerie
-                sessionStorage.setItem('currentConversationName', conversationName);
-                sessionStorage.setItem('currentConversationImage', conversationImageSrc);
-                
-                // Redirection vers la page de messagerie
-            }
+      <script>
+        // JavaScript : Logique pour afficher/cacher la fenêtre d'options
+        document.getElementById('btnOptions').addEventListener('click', function() {
+          var optionsWindow = document.getElementById('optionsWindow');
+          if (optionsWindow.style.display === 'none') {
+            optionsWindow.style.display = 'block'; // Affiche la fenêtre
+          } else {
+            optionsWindow.style.display = 'none'; // Cache la fenêtre
+          }
         });
-    });
-
-
-    // JavaScript : Logique pour afficher/cacher la fenêtre d'options
-    document.getElementById('btnOptions').addEventListener('click', function() {
-      var optionsWindow = document.getElementById('optionsWindow');
-      if (optionsWindow.style.display === 'none') {
-        optionsWindow.style.display = 'block'; // Affiche la fenêtre
-      } else {
-        optionsWindow.style.display = 'none'; // Cache la fenêtre
-      }
-    });
-
-</script>
+       </script>
 </body>
 </html>
