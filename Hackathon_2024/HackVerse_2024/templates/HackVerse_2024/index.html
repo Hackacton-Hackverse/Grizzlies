@@ -1,70 +1,99 @@
+{% load static %}
 <!doctype html>
 <html lang="fr">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Page d'accueil de l'API</title>
-    <style>
-        /* Styles généraux */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
-        }
-        .container {
-			flex:2;
-			display: block;
-			justify-content: space-between;
-			
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        /* Styles pour chaque module */
-        .module-container {
-            background-color: #ffffff;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        .module-button {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-            color: #ffffff;
-            text-align: center;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .module-button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+	<style>
+	/* styles.css */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background: #00777f;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.service {
+    width: 22%;
+    margin: 10px;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.service img {
+    max-width: 40px;
+    height: auto;
+    border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+    .service {
+        width: 45%;
+    }
+}
+
+@media (max-width: 480px) {
+    .service {
+        width: 100%;
+    }
+}
+
+	</style>
 </head>
 <body>
-    <div class="container">
-        <div class="module-container">
+    {% block content %}
+    <header>
+        <h1>Pipo App!</h1>
+        <p>Une application pour simplifier votre vie d'étudiant !</p>
+    </header>
+    <main>
+        <section class="service" onclick="GetAJob()">
+			<img src="{% static 'ressources/GetAJob.jpg' %}" alt="Service 1">
             <h2>Get A Job</h2>
-            <button class="module-button" onclick= "GetAJob()">Accéder</button>
-        </div>
-        <div class="module-container">
-            <h2>Chat & Forums</h2>
-            <button class="module-button" onclick= "Chat()">Accéder</button>
-        </div>
-        <div class="module-container">
+            <p>Découvrez les opportunités qui s'offrent à vous.</p>
+        </section>
+		
+        <section class="service" onclick="Chat()">
+			<img src="{% static 'ressources/Forums.jpg' %}" alt="Service 2">
+            <h2>Forums</h2>
+            <p>Discutez et restez en contact grace à nos forums d'échanges.</p>
+        </section>
+		
+        <section class="service" >
+			<img src="{% static 'ressources/Eshop.jpg' %}" alt="Service 3">
+            <h2>Eshop</h2>
+            <p>Faites vos achats à distance et gagnez en temps.</p>
+        </section>
+        <section class="service">
+			<img src="{% static 'ressources/Library.jpg' %}" alt="Service 4">
             <h2>Library</h2>
-            <button class="module-button">Accéder</button>
-        </div>
-        <div class="module-container">
-            <h2>Activities</h2>
-            <button class="module-button">Accéder</button>
-        </div>
-    </div>
+            <p>Accédez à de nombreux manuels et documents depuis la librairie.</p>
+        </section>
+    </main>
+    {% endblock %}
 </body>
 <script>
 	function GetAJob(){
