@@ -1,13 +1,14 @@
 from django.contrib import admin
 from django.urls import path
-from .views import conversation_list,conversation_detail,messagerie,create_conversation,start_conversation,send_message
+from .views import conversation_list,conversation_detail,messagerie,create_conversation,start_conversation,index,add_participant
 
 
 urlpatterns = [
-    path('', conversation_list, name = 'conversations'),
+    path('',index),
+    path('Acceuil', conversation_list, name = 'Acceuil'),
     path('messagerie/<int:conversation_id>/', messagerie, name = 'messagerie'),
     path('conversations/<int:conversation_id>/', conversation_detail, name='conversation_detail'),
-    path('create', create_conversation),
-    path('start/<int:other_user_id>/',start_conversation ,name = 'start_conversation'),
-    path('send/<int:conversation_id>/',send_message ,name = 'send_message'),
+    path('create', create_conversation, name = 'create'),
+    path('start/<str:titre>/<str:other_user_name>',start_conversation ,name = 'start_conversation'),
+    path('add/<str:other_user_name>',add_participant)
 ]
