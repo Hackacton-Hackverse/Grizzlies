@@ -21,6 +21,7 @@ from Get_A_Job_S1.views import handler
 
 
 urlpatterns = [
+    path('admin/',  admin.site.urls),
     path('job/',include('Get_A_Job_S1.urls')),
     path('Chat/',include('Chat_Fora_S2.urls')),
     path('',index),
