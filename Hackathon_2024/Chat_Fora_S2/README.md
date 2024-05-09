@@ -24,12 +24,29 @@ Pour lancer l'appli, il faut :
 - [x] **conversation many to many** : c'est equivalent des groupes de conversations ou des forums
 - [x] **conversation one to many** : c'est l'équivalent des groupes de diffusion
 
-
  # Les exigences pour acceder au M2
- - 
+ - Bien vouloir s'enregistrer en tant que administrateurs avant d'entrer dans la rubrique
+
+ - pour s'enregistrer, entrer http://grizzlies2024.pythonanywhere.com/admin
+ - et choisir l'un des 3 Users pour le moment
+ - Ensuite cliquer en haut à gauche sur *voir le site* ou *view site* pour revenir sur l'application, et
+ - maintenant choisir la rubrique 
+# Comment Ça fonctionne?
+- Après avoir été enregistré en tant que admin(pour le moment) vous remplissez v
+- s informations à la première page d'accueil
+- Ensuite vous serez dirigé vers la liste de conversation, vous pouvez choisir une conversation et continuer de discuter
+- - ou créé une nouvelle discussion en cliquant sur le bouton ± en dessous à droite de la page
+  - Entrer le titre de la discussion ainsi le username (nom d'utilisateur) du destinataire.
+
+Ci dessus ,le lien de l'application, pour le moment uniquement le module 1 est disponible
 
 # information administrateur
-- 
+- Username 1 : Grizzlies
+- Password: Hackathon2024
+- Username 2:ALD
+- Password : azaleodel
+- Username 3: LAD
+- Password leoazadel123
 
 # Version des packages utilisés :
 Nous avons utilisé Django pour développer cette application Web 
@@ -48,6 +65,6 @@ Nous avons utilisé Django pour développer cette application Web
 	🗿Python 
  	🗿Django 
   	🗿SQLite 
-    🗿HTML5 
-    🗿CSS
+        🗿HTML5 
+        🗿CSS
 
