@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect,JsonResponse
 from .models import JobOffer,JobPost
 from .forms import JobForm,PostForm
 from django.urls import reverse
+from Chat_Fora_S2.views import start_conversation
 
 
     
@@ -14,14 +15,25 @@ def est_administrateur(user):
 
 # Create your views here.
 
-def index(request):
-    return render(request, 'Get_A_Job_S1/index.html')
     
 def job_list(request):
     jobs = JobOffer.objects.all()
     
     return render(request, 'Get_A_Job_S1/job_list.html', {'jobs': jobs})
 
+def job_detail(request,job_id):
+    job = JobOffer.objects.get(id=job_id)
+    
+    return render(request, 'Get_A_Job_S1/job_details.html', {'job': job})
+
+#fonction permettant d'entrer en conversation avec la personne ayant poster
+def chat(request,job_id):
+    job = JobOffer.objects.get(id=job_id)
+    titre = job.titre
+    auteur = job.nom
+    return redirect(reverse('Chat_Fora_S2:start_conversation',args=[titre,auteur]))
+
+    
 @login_required
 @user_passes_test(est_administrateur)
 def create_job(request):
@@ -39,47 +51,55 @@ def create_job(request):
 @user_passes_test(est_administrateur)
 def update_job(request,job_titre):
     job = JobOffer.objects.get(titre= job_titre)
-    if request.method == 'POST':
-        form = JobForm(request.POST,instance = job)
-        if form.is_valid():
-            #Recuperation des infos du form
-               titre = form.cleaned_data['titre']
-               nom_entreprise = form.cleaned_data['nom_entreprise']
-               lieu = form.cleaned_data['lieu']
-               description = form.cleaned_data['description']
-               deja_pris = form.cleaned_data['deja_pris']
-               email = form.cleaned_data['email']
-               remuneration = form.cleaned_data['remuneration']
-               profile = form.cleaned_data['profile']
-            #    Suppression de l'ancien
-               get_object_or_404(JobOffer,titre = job.titre).delete()
-              
-               job = JobOffer(titre=titre,nom_entreprise=nom_entreprise,email=email,lieu=lieu,deja_pris=deja_pris,description=description,remuneration=remuneration,profile=profile)
-               
-               job.save()
-               return redirect('job-list')
-    else:
-        form = JobForm(instance = job)
-        return render(request, 'Get_A_Job_S1/update_job.html', {'form': form , 'job': job})
+    if job.nom == request.user.username:
+        if request.method == 'POST':
+            form = JobForm(request.POST,instance = job)
+            if form.is_valid():
+                #Recuperation des infos du form
+                titre = form.cleaned_data['titre']
+                nom_entreprise = form.cleaned_data['nom_entreprise']
+                lieu = form.cleaned_data['lieu']
+                description = form.cleaned_data['description']
+                deja_pris = form.cleaned_data['deja_pris']
+                email = form.cleaned_data['email']
+                remuneration = form.cleaned_data['remuneration']
+                profile = form.cleaned_data['profile']
+                #    Suppression de l'ancien
+                get_object_or_404(JobOffer,titre = job.titre).delete()
+                
+                job = JobOffer(titre=titre,nom_entreprise=nom_entreprise,email=email,lieu=lieu,deja_pris=deja_pris,description=description,remuneration=remuneration,profile=profile)
+                
+                job.save()
+                return redirect('job-list')
+        else:
+            form = JobForm(instance = job)
+            return render(request, 'Get_A_Job_S1/update_job.html', {'form': form , 'job': job})
+    else :
+        return render(request, 'Get_A_Job_S1/erreur_admin.html')
    
 
 @user_passes_test(est_administrateur)
 @login_required
 def delete_job(request, job_titre):
     job = get_object_or_404(JobOffer,titre=job_titre)
-    if request.method == 'POST':
-        #Suppression si la confirmation est recue
-        job.delete()
-        return HttpResponseRedirect(reverse('job-list')) #Rediriger vers l'acceuil
-    return render(request, 'Get_A_Job_S1/delete_job.html', {'job':job})
-
+    if job.nom == request.user.username:
+        if request.method == 'POST':
+            #Suppression si la confirmation est recue
+            job.delete()
+            return HttpResponseRedirect(reverse('job-list')) #Rediriger vers l'acceuil
+        return render(request, 'Get_A_Job_S1/delete_job.html', {'job':job})
+    else:
+        return render(request, 'Get_A_Job_S1/erreur_admin.html')
 
 def postuler_job(request,job_id):
     
     if request.method == 'POST':
-        print('oui')
-        # Formulaire de candidature
+        
+        offre = get_object_or_404(JobOffer, id = job_id)
+       # Formulaire de candidature
         form = PostForm(request.POST)
+        other_user =  offre.nom
+        titre = offre.titre
         if form.is_valid():
             form.save(using='users')
             # Récupération des données du formulaire
@@ -97,10 +117,10 @@ def postuler_job(request,job_id):
             sujet_utilisateur = 'Confirmation de candidature'
             message_utilisateur = 'Merci d\'avoir postulé à notre offre. Nous vous contacterons bientot.'
             send_mail(sujet_utilisateur,message_utilisateur,settings.EMAIL_HOST_USER,[email])
+           #commence une conversation
             
-        return JsonResponse({'message':'Candidature envoyée avec succès !!'})
+        return redirect('http://127.0.0.1:8000/Chat/start',titre,other_user)
     else:
-        print('non')
         offre = get_object_or_404(JobOffer, id = job_id)
         form = PostForm()
     posts = JobPost.objects.all() 

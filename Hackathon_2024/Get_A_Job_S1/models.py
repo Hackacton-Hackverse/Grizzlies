@@ -14,6 +14,7 @@ class JobOffer(models.Model):
 
     """
     titre = models.CharField(max_length=100)
+    nom = models.CharField(max_length=100)
     nom_entreprise = models.CharField(max_length=100)
     lieu = models.CharField(max_length=100)
     description = models.TextField(max_length=200)
@@ -38,5 +39,8 @@ class JobPost(models.Model):
     def __str__(self):
         return self.nom
     
-    """ class Meta:
-        using = 'Candidatures_db'"""
+   
+class MyModel(models.Model):
+    nom = models.CharField(max_length=200)
+    email = models.EmailField()
+    password = models.CharField(max_length=100)
