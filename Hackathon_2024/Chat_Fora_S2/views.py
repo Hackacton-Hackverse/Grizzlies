@@ -3,15 +3,14 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import Conversation, Message,ConversationOO
 from .forms import ConversationForm,MessageForm,ConversationFormOO
+from django.urls import reverse
 
 # Create your views here.
-def index(request):
-    return render(request, 'Chat_Fora_S2/RegisterChat.html')
 @login_required
 def conversation_list(request):
     conversations = Conversation.objects.filter(participants = request.user)
     # conversations.delete()
-    return render(request, 'Chat_Fora_S2/Acceuil.html', {'conversations': conversations})
+    return render(request, 'Chat_Fora_S2/Acceuil.html', {'conversations': conversations,'user':request.user})
 
 
 @login_required
@@ -66,28 +65,34 @@ def start_conversation(request,titre,other_user_name):
         other_user = User.objects.get(username=other_user_name)
             
             #Creation d'une nouvelle instance de modele Conversation
-        conversation = Conversation.objects.create(titre=titre)
-            
-            #Ajout des participants a la conversation 
-        conversation.participants.add(current_user,other_user)
-            
+        if Conversation.objects.filter(titre=titre).exists() == False:
+            conversation = Conversation.objects.create(titre=titre)
+                
+                #Ajout des participants a la conversation 
+            conversation.participants.add(current_user,other_user)
+                
             #Redirection de l'utilisateur vers la page de messagerie
-        return redirect('messagerie',conversation.id)
+        else :
+            conversation = Conversation.objects.get(titre=titre)
+        return redirect(reverse('Chat_Fora_S2:messagerie',args=[conversation.id]))
+        
     
     else:
         return redirect('login')
     
     return redirect('Acceuil')
 
-def add_participant(request,other_user_name):
+def add_participant(request,id,other_user_name):
     #Obtenir l'utilisateur actuel et l'utilisateur cible
     current_user = request.user
-    conversation = Conversation.objects.filter(participants = request.user)
-    if User.objects.filter(username=other_user_name).exists() == True:
-        other_user = User.objects.get(username=other_user_name)
-        conversation.participants.add(other_user)
-    else:
-        return render(request, 'Chat_Fora_S2/erreur_user.html')
+    conversation = Conversation.objects.get(id=id)
+    print(conversation)
+    # if User.objects.filter(username=other_user_name).exists() == True:
+    #     other_user = User.objects.get(username=other_user_name)
+    #     old_participants = conversation.participants
+    #     # conversation.participants.add(other_user)
+    # else:
+    #     return render(request, 'Chat_Fora_S2/erreur_user.html')
     
     
     return render(request,'Chat_Fora_S2/add_part.html')
