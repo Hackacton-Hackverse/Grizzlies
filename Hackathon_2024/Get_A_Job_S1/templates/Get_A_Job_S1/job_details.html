@@ -17,17 +17,19 @@
     </header>
 
     <div class="offre">
-        {% for job in jobs%}
             <h2>{{ job.titre }}</h2>
             <h3>Entreprise: </h3>{{ job.nom_entreprise }}
+            <h3>Lieu:</h3><p> {{ job.lieu }}</p>
+            <h3>Description : </h3>
+                <p></b>{{ job.description}}</p>
             <h3>Email : </h3><p>{{ job.email }}</p>
-
+            <h3>Rémuneration :</h3>
+                <p> {{ job.remuneration }}</p>
+            <h3>Profil recherché :</h3>
+                    <p> {{ job.profile }}</p>
             <section>
-                <button class="btn-postuler" onclick="chat({{ job.id }})">Chat</button>
-                <button class="btn-postuler" onclick="details_job({{ job.id }})">Plus d'informations</button>
+                <button class="btn-postuler" onclick="postuler({{ job.id }})">Postuler</button>
             </section>
-        {% endfor %}
-        
     </div>
 <section>    
     <footer>
@@ -35,13 +37,10 @@
     </footer>
 </section>
 <script>
-function details_job(id) {
+function postuler(id) {
   // Redirection vers la page de candidature
-  window.location.href = 'http://127.0.0.1:8000/job/job_detail-'+id+'/'; 
+  window.location.href = 'http://127.0.0.1:8000/job/postuler-'+id+'/'; 
 }
-function chat(id) {
-    window.location.href = 'http://127.0.0.1:8000/job/chat-'+id+'/'; 
-  }
 </script>
 
 </body>
