@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from .views import index
+from .views import index,register,ogin,register_user
 from Get_A_Job_S1.views import handler
 
 
@@ -24,6 +24,8 @@ urlpatterns = [
     path('admin/',  admin.site.urls),
     path('job/',include('Get_A_Job_S1.urls')),
     path('Chat/',include('Chat_Fora_S2.urls')),
-    path('',index),
+    path('',register_user),
+    path('login',ogin),
+    path('index',index,name='index'),
     path('accounts/login/',handler),
 ]
