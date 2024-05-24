@@ -130,7 +130,7 @@
 		<button onclick="back()" class="back-button">Retour</button>
 		<h1 id="conversationName"> {{ conversation.titre }}</h1>
 		<button class="options-button"></button>
-    <button onclick="Add()"> +        </button>
+    <button onclick="Add({{ conversation.id}})"> +        </button>
   </div>
   
   <div class="messages-container" id="messages">
@@ -163,7 +163,7 @@
   </div>
 </div>
 
-{% endblock %}
+
 <script>
   const socket = newWebSocket('http://127.0.0.1:8000/Chat/');
   // ouverture de la connexion Websocket d
@@ -198,11 +198,11 @@
 	window.location.href = 'http://127.0.0.1:8000/Chat/Acceuil';
   }
 
-  function Add(){
+  function Add(id){
    var  other = prompt('Entrez le nom du nouveau membre :');
-    window.location.href = 'http://127.0.0.1:8000/Chat/add/'+other;
+    window.location.href = 'http://127.0.0.1:8000/Chat/add/'+id+other;
     }
-   
+    {% endblock %}
   // Sur la page de messagerie, au chargement du document
 {% comment %} document.addEventListener('DOMContentLoaded', () => {
     // Récupérez le nom de la conversation et l'image

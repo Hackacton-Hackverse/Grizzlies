@@ -20,7 +20,12 @@
   padding: 10px;
   z-index: 999; /* Assurez-vous que l'entête est au-dessus du contenu */
 }
-
+button.btn-postuler {
+  color: blue;
+  width: 30%;
+  padding: 1%;
+  font-size: larger;
+}
 /* Styles pour les boutons de l'entête */
 
 .options-button {
@@ -80,6 +85,7 @@
 
 	<div class="header">
 		<h1>Chat&Fora</h1>
+    <h1> {{ user.username}}</h1>
 		<button id="btnOptions" class="options-button">Options</button>
 	</div>
   <!-- Fenêtre d'options initialement cachée -->
@@ -92,7 +98,7 @@
         
         {% for conversation in conversations %}
             <li class="conversation-item"><img src="{% static 'ressources/profile.jpeg' %}" alt = "C1" class="conversation-photo">
-              <a href="{% url  'messagerie' conversation.id %}">{{conversation.titre}}</li>
+              <button class="btn-postuler" onclick="conversation({{ conversation.id }})">{{conversation.titre}}</button>
         {% empty %}
               <li> Aucune conversation disponible </li>
         {% endfor %}
@@ -100,9 +106,18 @@
 	</div>
 
     <!-- Bouton flottant pour ajouter une nouvelle conversation -->
-    <button class="add-button"><a href="{% url  'create'  %}">+</button>
+    <button class="add-button" onclick="create()">+</button>
 
       <script>
+        function conversation(id) {
+          // Redirection vers la page de candidature
+          window.location.href = 'http://127.0.0.1:8000/Chat/messagerie/'+id+'/'; 
+        }
+
+        function create() {
+          // Redirection vers la page de candidature
+          window.location.href = 'http://127.0.0.1:8000/Chat/create'; 
+        }
         // JavaScript : Logique pour afficher/cacher la fenêtre d'options
         document.getElementById('btnOptions').addEventListener('click', function() {
           var optionsWindow = document.getElementById('optionsWindow');
